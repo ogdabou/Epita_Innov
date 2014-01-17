@@ -6,6 +6,9 @@ http://fr.openclassrooms.com/informatique/cours/introduction-a-la-vision-par-ord
 Lire un flux vidéo/webcam avec OpenCV
 http://www.esiee.fr/~kachourr/Page_web/Enseignement/2012_2013/EL5E13/RK_EL5E13-TP3&4_2012-13
 
+Face detector with OPENCV
+http://www.cs.princeton.edu/courses/archive/fall08/cos429/CourseMaterials/Precept1/facedetect.pdf
+
 
 # PARTIE PC :
 -Pouvoir détecter les zones clés (portes, fenêtres...)
