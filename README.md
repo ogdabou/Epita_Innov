@@ -1,5 +1,12 @@
-Epita_Innov
+Liens Utiles
 ===========
+Mise en place + Présentation d'OPENCV
+http://fr.openclassrooms.com/informatique/cours/introduction-a-la-vision-par-ordinateur/presentation-d-opencv
+
+Lire un flux vidéo/webcam avec OpenCV
+http://www.esiee.fr/~kachourr/Page_web/Enseignement/2012_2013/EL5E13/RK_EL5E13-TP3&4_2012-13
+
+
 # PARTIE PC :
 -Pouvoir détecter les zones clés (portes, fenêtres...)
 Le but serait de pouvoir configurer l'application via son PC, le prof nous a parler de lib pour détecter les zones à risques (portes, fenêtres), certaines libs proposent cela.
