@@ -14,6 +14,8 @@ class MyRecognizer
     private:
         cv::CascadeClassifier classifier;
         cv::Rect copyRect(cv::Rect tocopy);
+
+        const char* CASCADE_REF;
 };
 
 #endif // MYRECOGNIZER_HPP

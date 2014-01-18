@@ -13,7 +13,6 @@ class FaceDetectApp
 
     private:
         const char* WEBCAM_RAW_WINDOW_TITLE;
-        const char* CASCADE_REF;
         const char* WEBCAM_DETECT_WINDOW;
         const char* WEBCAM_MVT_WINDOW;
 
@@ -21,6 +20,11 @@ class FaceDetectApp
         cv::VideoCapture capture;
         cv::CascadeClassifier classifier;
         MyRecognizer faceRecognizer;
+
+        void createWindows();
+        void readParams(int argc, char* argv[]);
+        int openWebcamStream();
+        int mainLoop();
 };
 
 #endif // FACEDETECTAPP_H
