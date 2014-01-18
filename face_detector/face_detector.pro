@@ -9,7 +9,8 @@ LIBS += /usr/lib/libopencv*.so
 SOURCES += \
     myrecognizer.cpp \
     facedetectapp.cpp \
-    main.cpp
+    main.cpp \
+    mvt_detection.cpp
 
 OTHER_FILES += \
     haarcascade_frontalface_default.xml
@@ -17,5 +18,6 @@ OTHER_FILES += \
 HEADERS += \
     myrecognizer.hpp \
     mainHeader.hpp \
-    facedetectapp.h
+    facedetectapp.h \
+    mvt_detection.h
 

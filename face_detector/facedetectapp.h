@@ -15,6 +15,7 @@ class FaceDetectApp
         const char* WEBCAM_RAW_WINDOW_TITLE;
         const char* CASCADE_REF;
         const char* WEBCAM_DETECT_WINDOW;
+        const char* WEBCAM_MVT_WINDOW;
 
         int WAITING_TIME_IN_MS;
         cv::VideoCapture capture;
