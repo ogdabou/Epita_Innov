@@ -4,23 +4,66 @@
 
 using namespace std;
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <opencv2/objdetect/objdetect.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/core/core.hpp>
-
+#include "mainHeader.hpp"
+#include "myrecognizer.hpp"
 
 using namespace cv;
 
+int main()
+{
+    const char* WEBCAM_RAW_WINDOW_TITLE = "Webcam Raw Video";
+    const char* CASCADE_REF = "haarcascade_frontalface_default.xml";
+    const int WEBCAM_CONNECTION_ATTEMPT = 5;
 
-int main (int argc, char* argv[])
+    cv::VideoCapture capture(0);
+
+    if (!capture.isOpened())
+    {
+        return -1;
+    }
+    else
+    {
+        qDebug() << "Sucess to access webcam!";
+    }
+    namedWindow(WEBCAM_RAW_WINDOW_TITLE, 1);
+    cv::Mat singleFrame;
+    capture >> singleFrame;
+    imshow(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
+
+    char pressedKey = 'l';
+    while(pressedKey != 'q' && pressedKey != 'Q')
+    {
+        capture >> singleFrame;
+        if (!singleFrame.empty())
+        {
+            qDebug() << "Frame is not empty";
+            imshow(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
+            CascadeClassifier classifier;
+            classifier.load(CASCADE_REF);
+            MyRecognizer reco;
+            reco.setClassifier(classifier);
+            reco.detectAndDisplay(singleFrame, WEBCAM_RAW_WINDOW_TITLE);
+
+//            imshow(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
+            pressedKey = waitKey(10);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    destroyAllWindows();
+    return 0;
+}
+
+
+
+int mainLol ()
 {
     CvCapture* capture = NULL; // will read a video or a webCam
     const int WEBCAM_CONNECTION_ATTEMPT = 5;
     const char* WEBCAM_RAW_WINDOW_TITLE = "Webcam Raw Video";
-    const string CASCADE_REF = "haarcascade_frontalface_default.xml";
+    const char* CASCADE_REF = "haarcascade_frontalface_default.xml";
 
     // sometimes the webcam is not detected directly.
     int attempt = 0;
@@ -40,7 +83,8 @@ int main (int argc, char* argv[])
         CascadeClassifier classifier;
         if (!classifier.load(CASCADE_REF))
         {
-            qDebug() << "failed to load classifier with " << CASCADE_REF;
+            qDebug() << "failed to load classifier with ";
+            qDebug() <<  CASCADE_REF;
         }
 
         // Window creation + show webcam
@@ -51,7 +95,6 @@ int main (int argc, char* argv[])
         while (key !='Q' && key !='q')
         {
             webCamImages = cvQueryFrame(capture);
-            determinant
             cvShowImage(WEBCAM_RAW_WINDOW_TITLE, webCamImages);
             key = cvWaitKey(10);
         }
