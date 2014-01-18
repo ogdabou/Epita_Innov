@@ -29,7 +29,7 @@ void MyRecognizer::detectAndDisplay(cv::Mat frame, const char *targetWindow)
     cv::Mat frameCopy;
     frame.copyTo(frameCopy);
     // To improve speed, change the min detection size
-    classifier.detectMultiScale(frameCopy, detected_faces, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(60, 60));
+    classifier.detectMultiScale(frameCopy, detected_faces, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 
     for (int i = 0; i < detected_faces.size(); i++)
     {

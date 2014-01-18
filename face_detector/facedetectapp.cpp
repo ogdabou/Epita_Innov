@@ -5,6 +5,7 @@ FaceDetectApp::FaceDetectApp()
     WEBCAM_RAW_WINDOW_TITLE = "Webcam Raw Video";
     CASCADE_REF = "haarcascade_frontalface_default.xml";
     WEBCAM_DETECT_WINDOW = "Face Detection";
+    WEBCAM_MVT_WINDOW = "Movement detection";
     WAITING_TIME_IN_MS = 5;
 }
 
@@ -33,6 +34,7 @@ int FaceDetectApp::start(int argc, char* argv[])
     }
     cv::namedWindow(WEBCAM_DETECT_WINDOW, 1);
     cv::namedWindow(WEBCAM_RAW_WINDOW_TITLE, 1);
+    cv::namedWindow(WEBCAM_MVT_WINDOW,1);
 
     cv::Mat singleFrame;
     char pressedKey = 'l';
