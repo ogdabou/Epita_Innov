@@ -14,3 +14,6 @@
 
 # Executables
 *.exe
+
+#Axel Qt files
+face_detector-build-desktop-Qt_4_8_1_dans_le_PATH__Syst_me__Release/*
