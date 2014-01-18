@@ -17,7 +17,7 @@ int FaceDetectApp::start(int argc, char* argv[])
 {
     if (argc > 1)
     {
-        qDebug() << "time requested : "<< argv[1];
+        std::cout << "time requested : "<< argv[1];
         WAITING_TIME_IN_MS = atoi(argv[1]);
     }
 
