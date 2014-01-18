@@ -5,14 +5,15 @@
 
 class MyRecognizer
 {
-public:
-    MyRecognizer();
-    void detectAndDisplay(cv::Mat frame, const char* targetWindow);
-    void setClassifier(cv::CascadeClassifier ccl);
+    public:
+        MyRecognizer();
+        ~MyRecognizer();
+        void detectAndDisplay(cv::Mat frame, const char* targetWindow);
+        void setClassifier(cv::CascadeClassifier ccl);
 
-private:
-    cv::CascadeClassifier classifier;
-    cv::Rect copyRect(cv::Rect tocopy);
+    private:
+        cv::CascadeClassifier classifier;
+        cv::Rect copyRect(cv::Rect tocopy);
 };
 
 #endif // MYRECOGNIZER_HPP

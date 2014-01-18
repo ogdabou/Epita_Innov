@@ -4,6 +4,10 @@ MyRecognizer::MyRecognizer()
 {
 }
 
+MyRecognizer::~MyRecognizer()
+{
+}
+
 void MyRecognizer::setClassifier(cv::CascadeClassifier ccl)
 {
     this->classifier = ccl;
@@ -22,7 +26,10 @@ cv::Rect MyRecognizer::copyRect(cv::Rect tocopy)
 void MyRecognizer::detectAndDisplay(cv::Mat frame, const char *targetWindow)
 {
     std::vector<cv::Rect> detected_faces;
-    classifier.detectMultiScale(frame, detected_faces, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+    cv::Mat frameCopy;
+    frame.copyTo(frameCopy);
+    // To improve speed, change the min detection size
+    classifier.detectMultiScale(frameCopy, detected_faces, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(60, 60));
 
     for (int i = 0; i < detected_faces.size(); i++)
     {
@@ -33,8 +40,8 @@ void MyRecognizer::detectAndDisplay(cv::Mat frame, const char *targetWindow)
 
         cv::Point p1(regionOne.x, regionOne.y);
         cv::Point p2(regionOne.x + regionOne.height, regionOne.y + regionOne.height);
-        cv::rectangle(frame, p1, p2, cv::Scalar(0, 255, 0), 2, 8, 0);
+        cv::rectangle(frameCopy, p1, p2, cv::Scalar(0, 255, 0), 2, 8, 0);
 
-        cv::imshow(targetWindow, frame);
+        cv::imshow(targetWindow, frameCopy);
     }
 }
