@@ -39,14 +39,14 @@ int FaceDetectApp::start(int argc, char* argv[])
 
     classifier.load(CASCADE_REF);
 
-    reco.setClassifier(classifier);
+    faceRecognizer.setClassifier(classifier);
     while(pressedKey != 'q' && pressedKey != 'Q')
     {
         capture >> singleFrame;
         if (!singleFrame.empty())
         {
             cv::imshow(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
-            reco.detectAndDisplay(singleFrame, WEBCAM_DETECT_WINDOW);
+            faceRecognizer.detectAndDisplay(singleFrame, WEBCAM_DETECT_WINDOW);
             pressedKey = cv::waitKey(WAITING_TIME_IN_MS);
         }
         else

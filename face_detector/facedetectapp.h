@@ -19,7 +19,7 @@ class FaceDetectApp
         int WAITING_TIME_IN_MS;
         cv::VideoCapture capture;
         cv::CascadeClassifier classifier;
-        MyRecognizer reco;
+        MyRecognizer faceRecognizer;
 };
 
 #endif // FACEDETECTAPP_H
