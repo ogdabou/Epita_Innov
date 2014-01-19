@@ -11,6 +11,7 @@ FaceDetectApp::FaceDetectApp()
     WEBCAM_COLOR_WINDOW = "Color detection";
     WEBCAM_CONTOUR_WINDOW = "Contour detection";
     WAITING_TIME_IN_MS = 5;
+    list_inter_zone = new std::vector<InterestZone>;
 }
 
 FaceDetectApp::~FaceDetectApp()
@@ -102,9 +103,9 @@ void FaceDetectApp::refreshFrame()
     {
         //buildMenu(singleFrame);
         printImage(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
-        printImage(WEBCAM_DETECT_WINDOW, faceRecognizer.detect(singleFrame));
-        printImage(WEBCAM_COLOR_WINDOW, colorDetector.detect(singleFrame));
-        printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame));
+        printImage(WEBCAM_DETECT_WINDOW, faceRecognizer.detect(singleFrame,list_inter_zone));
+        printImage(WEBCAM_COLOR_WINDOW, colorDetector.detect(singleFrame,list_inter_zone));
+        printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame,list_inter_zone));
         printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame));
     }
     else

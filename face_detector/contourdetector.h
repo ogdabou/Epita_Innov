@@ -7,7 +7,7 @@ class ContourDetector
 {
     public:
         ContourDetector();
-        cv::Mat detect(cv::Mat inputFrame);
+        cv::Mat detect(cv::Mat inputFrame,  std::vector<InterestZone> list_inter_zone);
 
     private:
         cv::Mat canny_output;

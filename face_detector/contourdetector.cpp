@@ -4,7 +4,7 @@ ContourDetector::ContourDetector()
 {
 }
 
-cv::Mat ContourDetector::detect(cv::Mat inputFrame)
+cv::Mat ContourDetector::detect(cv::Mat inputFrame,  std::vector<InterestZone> list_inter_zone)
 {
     int thresh = 100;
 

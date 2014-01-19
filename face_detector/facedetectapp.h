@@ -46,6 +46,7 @@ class FaceDetectApp : QObject
         ContourDetector contourDetector;
         cv::Mat currentFrame;
         std::map<const char*, MyQtGui*> resultPrinter;
+        std::vector<InterestZone> list_inter_zone;
 
         QWidget* widget;
         QGridLayout* layout;
