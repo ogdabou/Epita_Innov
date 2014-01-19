@@ -7,6 +7,7 @@
 #include "myqtgui.h"
 #include "colordetector.h"
 #include "contourdetector.h"
+#include "Websocketserver.h"
 
 #include <QDialog>
 #include <QApplication>
@@ -46,6 +47,7 @@ class FaceDetectApp : QObject
         ContourDetector contourDetector;
         cv::Mat currentFrame;
         std::map<const char*, MyQtGui*> resultPrinter;
+        WebSocketServer* myServer;
 
         QWidget* widget;
         QGridLayout* layout;

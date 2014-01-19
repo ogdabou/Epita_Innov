@@ -4,7 +4,12 @@ CONFIG += qt
 
 INCLUDEPATH += /usr/include/opencv2
 
-LIBS += /usr/lib/libopencv*.so
+LIBS += /usr/lib/libopencv*.so \
+        /usr/lib/libwebsockets.so \
+        /usr/lib/libQtWebsocket.a
+
+QT += websockets \
+     network
 
 SOURCES += \
     myrecognizer.cpp \
@@ -14,7 +19,8 @@ SOURCES += \
     myqtgui.cpp \
     colordetector.cpp \
     contourdetector.cpp \
-    interestzone.cpp
+    interestzone.cpp \
+    Websocketserver.cpp
 
 OTHER_FILES += \
     haarcascade_frontalface_default.xml
@@ -27,5 +33,11 @@ HEADERS += \
     myqtgui.h \
     colordetector.h \
     contourdetector.h \
-    interestzone.h
+    interestzone.h \
+    Websocketserver.h \
+    QWsSocket.h \
+    QWsServer.h \
+    QWsHandshake.h \
+    QWsFrame.h \
+    QTlsServer.h
 

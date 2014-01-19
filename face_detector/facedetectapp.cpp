@@ -147,6 +147,7 @@ int FaceDetectApp::mainLoop(int argc, char* argv[])
     mainWindow->show();
 
     timer->start(WAITING_TIME_IN_MS);
+    myServer = new WebSocketServer(8082, QtWebsocket::Tcp);
     return app.exec();
 }
 
