@@ -10,9 +10,11 @@ cv::Mat ContourDetector::detect(cv::Mat inputFrame)
 
 
     cv::RNG rng(12345);
+    cv::Mat tmp;
+    inputFrame.copyTo(tmp);
 
       /// Detect edges using canny
-      cv::cvtColor( inputFrame, src_gray, CV_BGR2GRAY );
+      cv::cvtColor(tmp, src_gray, CV_BGR2GRAY );
       cv::Canny( src_gray, canny_output, thresh, thresh*2, 3 );
       /// Find contours
       cv::findContours( canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0) );

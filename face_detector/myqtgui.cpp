@@ -52,7 +52,7 @@ void MyQtGui::mouseMoveEvent(QMouseEvent *event)
     {
         currentZone.p2.x = event->pos().x();
         currentZone.p2.y = event->pos().y();
-        timer->stop();
+//        timer->stop();
 //        qDebug() << "(" << currentZone.p1.x << "," << currentZone.p1.y << ")";
         this->showImage();
     }
@@ -70,7 +70,7 @@ void MyQtGui::mousePressEvent(QMouseEvent *event)
 
 void MyQtGui::mouseReleaseEvent(QMouseEvent *event)
 {
-    timer->start();
+    //timer->start();
     writing = false;
     zoneList.push_back(currentZone);
     currentZone.reset();
