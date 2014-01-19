@@ -3,6 +3,7 @@
 
 #include "mainHeader.hpp"
 #include "myrecognizer.hpp"
+#include "mvt_detection.h"
 
 class FaceDetectApp
 {
@@ -20,6 +21,7 @@ class FaceDetectApp
         cv::VideoCapture capture;
         cv::CascadeClassifier classifier;
         MyRecognizer faceRecognizer;
+        Mvt_detection mvt_detect;
 
         void createWindows();
         void readParams(int argc, char* argv[]);

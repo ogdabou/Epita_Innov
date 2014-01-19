@@ -63,6 +63,7 @@ int FaceDetectApp::mainLoop()
         {
             cv::imshow(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
             faceRecognizer.detectAndDisplay(singleFrame, WEBCAM_DETECT_WINDOW);
+            mvt_detect.start(singleFrame, WEBCAM_MVT_WINDOW);
             pressedKey = cv::waitKey(WAITING_TIME_IN_MS);
         }
         else
