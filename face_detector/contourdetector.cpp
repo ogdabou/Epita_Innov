@@ -19,10 +19,16 @@ cv::Mat ContourDetector::detect(cv::Mat inputFrame)
 
       /// Draw contours
       cv::Mat drawing = cv::Mat::zeros( canny_output.size(), CV_8UC3 );
-      for( int i = 0; i< contours.size(); i++ )
+      for (unsigned int i = 0; i< contours.size(); i++ )
          {
            cv::Scalar color = cv::Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
            cv::drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, cv::Point() );
          }
+      std::string message;
+      std::stringstream sstm;
+      sstm << contours.size() << " contours detected";
+      message = sstm.str();
+      cv::putText(drawing, message, cvPoint(30,30),
+          cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255,255,255), 1, CV_AA);
       return drawing;
 }

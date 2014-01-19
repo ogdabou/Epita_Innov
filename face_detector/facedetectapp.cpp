@@ -61,20 +61,12 @@ void FaceDetectApp::refreshFrame()
     capture >> singleFrame;
     if (!singleFrame.empty())
     {
-        buildMenu(singleFrame);
+        //buildMenu(singleFrame);
         printImage(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
         printImage(WEBCAM_DETECT_WINDOW, faceRecognizer.detect(singleFrame));
         printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame));
-
         printImage(WEBCAM_COLOR_WINDOW, colorDetector.detect(singleFrame));
-
-
-       printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame));
-
-          /// Show in a window
-          //namedWindow( "Contours", CV_WINDOW_AUTOSIZE );
-          //imshow( "Contours", drawing );
-
+        printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame));
     }
     else
     {

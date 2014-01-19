@@ -48,8 +48,13 @@ cv::Mat MyRecognizer::detect(cv::Mat frame)
         cv::Point p1(regionOne.x, regionOne.y);
         cv::Point p2(regionOne.x + regionOne.height, regionOne.y + regionOne.height);
         cv::rectangle(frameCopy, p1, p2, cv::Scalar(0, 255, 0), 2, 8, 0);
-        qDebug() << "salut";
     }
+    std::string message;
+    std::stringstream sstm;
+    sstm << detected_faces.size() << " faces detected";
+    message = sstm.str();
+    cv::putText(frameCopy, message, cvPoint(30,30),
+        cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255,255,255), 1, CV_AA);
     return frameCopy;
     //cv::imshow(targetWindow, frameCopy);
 }
