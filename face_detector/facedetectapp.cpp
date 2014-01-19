@@ -1,4 +1,7 @@
+
+
 #include "facedetectapp.h"
+
 
 FaceDetectApp::FaceDetectApp()
 {
@@ -48,29 +51,60 @@ int FaceDetectApp::start(int argc, char* argv[])
 {
     readParams(argc, argv);
     if (openWebcamStream() == -1) return -1;
-    createWindows();
-    return mainLoop();
+    return mainLoop(argc, argv);
 }
 
-int FaceDetectApp::mainLoop()
+void FaceDetectApp::buildMenu(cv::Mat frame)
+{
+    cv::putText(frame, "[s] to save screenshot.", cvPoint(30,30),
+        cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255,255,255), 1, CV_AA);
+}
+
+void FaceDetectApp::refreshFrame()
 {
     cv::Mat singleFrame;
-    char pressedKey = 'l';
-    while(pressedKey != 'q' && pressedKey != 'Q')
+    capture >> singleFrame;
+    if (!singleFrame.empty())
     {
-        capture >> singleFrame;
-        if (!singleFrame.empty())
-        {
-            cv::imshow(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
-            faceRecognizer.detectAndDisplay(singleFrame, WEBCAM_DETECT_WINDOW);
-            mvt_detect.start(singleFrame, WEBCAM_MVT_WINDOW);
-            pressedKey = cv::waitKey(WAITING_TIME_IN_MS);
-        }
-        else
-        {
-            return 0;
-        }
+        buildMenu(singleFrame);
+        printImage(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
+        printImage(WEBCAM_DETECT_WINDOW, faceRecognizer.detect(singleFrame));
+        printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame));
     }
-    cv::destroyAllWindows();
-    return 0;
+    else
+    {
+        qDebug() << "The frame is empty!";
+    }
 }
+
+void FaceDetectApp::printImage(const char *windowName, cv::Mat frame)
+{
+    resultPrinter.find(windowName)->second->showImage(frame);
+}
+
+int FaceDetectApp::mainLoop(int argc, char* argv[])
+{
+    QApplication app(argc, argv);
+    QMainWindow mainWindow;
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_RAW_WINDOW_TITLE, new MyQtGui()));
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_DETECT_WINDOW, new MyQtGui()));
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_MVT_WINDOW, new MyQtGui()));
+
+    QWidget* widget = new QWidget();
+    QGridLayout* layout = new QGridLayout();
+
+    layout->addWidget(resultPrinter.find(WEBCAM_RAW_WINDOW_TITLE)->second, 0, 0);
+    layout->addWidget(resultPrinter.find(WEBCAM_DETECT_WINDOW)->second, 0, 1);
+    layout->addWidget(resultPrinter.find(WEBCAM_MVT_WINDOW)->second, 1, 0);
+
+    widget->setLayout(layout);
+    mainWindow.setCentralWidget(widget);
+    mainWindow.show();
+
+    QTimer *timer = new QTimer(this);
+    timer->connect(timer, SIGNAL(timeout()), this, SLOT(refreshFrame()));
+    timer->start(WAITING_TIME_IN_MS);
+    return app.exec();
+}
+
+

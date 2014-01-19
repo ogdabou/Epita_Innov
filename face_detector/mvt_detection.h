@@ -8,7 +8,7 @@ class Mvt_detection
 public:
     Mvt_detection();
     ~Mvt_detection();
-    void start(cv::Mat frame, const char *targetWindow);
+    cv::Mat start(cv::Mat frame);
 protected:
 };
 

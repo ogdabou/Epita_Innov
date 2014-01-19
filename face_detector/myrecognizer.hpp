@@ -8,7 +8,7 @@ class MyRecognizer
     public:
         MyRecognizer();
         ~MyRecognizer();
-        void detectAndDisplay(cv::Mat frame, const char* targetWindow);
+        cv::Mat detect(cv::Mat frame);
         void setClassifier(cv::CascadeClassifier ccl);
 
     private:

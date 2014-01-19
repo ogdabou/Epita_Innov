@@ -4,9 +4,18 @@
 #include "mainHeader.hpp"
 #include "myrecognizer.hpp"
 #include "mvt_detection.h"
+#include "myqtgui.h"
 
-class FaceDetectApp
+#include <QDialog>
+#include <QApplication>
+#include <QMainWindow>
+#include <QObject>
+#include <QTimer>
+#include <QGridLayout>
+
+class FaceDetectApp : QObject
 {
+    Q_OBJECT
     public:
         FaceDetectApp();
         ~FaceDetectApp();
@@ -23,10 +32,18 @@ class FaceDetectApp
         MyRecognizer faceRecognizer;
         Mvt_detection mvt_detect;
 
+        std::map<const char*, MyQtGui*> resultPrinter;
+
         void createWindows();
         void readParams(int argc, char* argv[]);
+        void buildMenu(cv::Mat frame);
         int openWebcamStream();
-        int mainLoop();
+        int mainLoop(int argc, char* argv[]);
+        void buildCentralWidget();
+        void printImage(const char* windowName, cv::Mat frame);
+
+    public slots:
+        void refreshFrame();
 };
 
 #endif // FACEDETECTAPP_H

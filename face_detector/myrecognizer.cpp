@@ -28,7 +28,7 @@ cv::Rect MyRecognizer::copyRect(cv::Rect tocopy)
     return copy;
 }
 
-void MyRecognizer::detectAndDisplay(cv::Mat frame, const char *targetWindow)
+cv::Mat MyRecognizer::detect(cv::Mat frame)
 {
     std::vector<cv::Rect> detected_faces;
     cv::Mat frameCopy;
@@ -51,5 +51,6 @@ void MyRecognizer::detectAndDisplay(cv::Mat frame, const char *targetWindow)
         cv::rectangle(frameCopy, p1, p2, cv::Scalar(0, 255, 0), 2, 8, 0);
         qDebug() << "salut";
     }
-    cv::imshow(targetWindow, frameCopy);
+    return frameCopy;
+    //cv::imshow(targetWindow, frameCopy);
 }
