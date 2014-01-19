@@ -5,6 +5,7 @@
 #include "myrecognizer.hpp"
 #include "mvt_detection.h"
 #include "myqtgui.h"
+#include "colordetector.h"
 
 #include <QDialog>
 #include <QApplication>
@@ -25,12 +26,15 @@ class FaceDetectApp : QObject
         const char* WEBCAM_RAW_WINDOW_TITLE;
         const char* WEBCAM_DETECT_WINDOW;
         const char* WEBCAM_MVT_WINDOW;
+        const char* WEBCAM_COLOR_WINDOW;
+        const char* WEBCAM_CONTOUR_WINDOW;
 
         int WAITING_TIME_IN_MS;
         cv::VideoCapture capture;
         cv::CascadeClassifier classifier;
         MyRecognizer faceRecognizer;
         Mvt_detection mvt_detect;
+        ColorDetector colorDetector;
 
         std::map<const char*, MyQtGui*> resultPrinter;
 
