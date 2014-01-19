@@ -19,16 +19,21 @@ void MyQtGui::showImage()
     this->setFixedSize(currentImage.cols, currentImage.rows);
 
 
-
-    qDebug() << zoneList.size() << " interest zones";
+    std::string message;
+    std::stringstream sstm;
+    sstm << zoneList.size() << " interest zone";
+    message = sstm.str();
+    cv::putText(currentImage, message, cvPoint(30, 40),
+        cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255,255,255), 1, CV_AA);
+//    qDebug() << zoneList.size() << " interest zones";
     for (unsigned int i = 0; i < zoneList.size(); i ++)
     {
         InterestZone zone = zoneList.at(i);
-        cv::rectangle(currentImage, zone.p1, zone.p2, cv::Scalar(0, 255, 0), 2, 8, 0);
+        cv::rectangle(currentImage, zone.p1, zone.p2, defaultZoneColor, 2, 8, 0);
     }
     if (currentZone.p2.x != 0 || currentZone.p2.y != 0)
     {
-        cv::rectangle(currentImage, currentZone.p1, currentZone.p2, cv::Scalar(0, 255, 0), 2, 8, 0);
+        cv::rectangle(currentImage, currentZone.p1, currentZone.p2, defaultZoneColor, 2, 8, 0);
     }
 
     repaint();
@@ -37,6 +42,7 @@ void MyQtGui::showImage()
 void MyQtGui::setImage(cv::Mat image)
 {
     this->currentImage = image;
+    defaultZoneColor = cv::Scalar(255, 0, 0);
 }
 
 
@@ -47,7 +53,7 @@ void MyQtGui::mouseMoveEvent(QMouseEvent *event)
         currentZone.p2.x = event->pos().x();
         currentZone.p2.y = event->pos().y();
         timer->stop();
-        qDebug() << "(" << currentZone.p1.x << ", " << currentZone.p1.y << ")";
+//        qDebug() << "(" << currentZone.p1.x << "," << currentZone.p1.y << ")";
         this->showImage();
     }
 }

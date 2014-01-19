@@ -49,6 +49,7 @@ protected:
     cv::Mat oldImage;
 
     cv::Mat tmpImage;
+    cv::Scalar defaultZoneColor;
 
     QTimer* timer;
 
