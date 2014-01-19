@@ -25,6 +25,6 @@ cv::Mat Mvt_detection::start(cv::Mat frame)
    cv::findContours(fore,contours,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
    cv::drawContours(frame,contours,-1,cv::Scalar(0,0,255),2);
    return frame;
-           //cv::imshow("Background",back);
+   //cv::imshow("Background",back);
 
 }

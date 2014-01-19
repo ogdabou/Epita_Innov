@@ -49,24 +49,63 @@ int FaceDetectApp::start(int argc, char* argv[])
     return mainLoop(argc, argv);
 }
 
-void FaceDetectApp::buildMenu(cv::Mat frame)
+void FaceDetectApp::buildMenuBar()
 {
-    cv::putText(frame, "[s] to save screenshot.", cvPoint(30,30),
-        cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255,255,255), 1, CV_AA);
+    menuBar = new QMenuBar();
+    QMenu* fileMenu = menuBar->addMenu("File");
+
+    QAction* takeScreenShot = new QAction("save screenshot", fileMenu);
+    connect(takeScreenShot, SIGNAL(triggered()), this, SLOT(saveScreenShot()));
+    fileMenu->addAction(takeScreenShot);
+    mainWindow->setMenuBar(menuBar);
+}
+
+void FaceDetectApp::saveScreenShot()
+{
+    QDate date = QDate::currentDate();
+    QTime time = QTime::currentTime();
+    QString dateString = date.toString();
+    QString timeString = time.toString();
+    qDebug() << "Saving a screenshot";
+    dateString.replace(" ", "_");
+    timeString.replace(" ", "_");
+
+    if(!QDir("screens/" + dateString).exists())
+    {
+        qDebug() << "creating screen folder for date " << dateString;
+        QDir().mkdir("screens/" + dateString);
+    }
+
+    std::string fileName;
+    fileName.append("screens/").append(dateString.toStdString()).append("/photo_").append(dateString.toStdString()).append(timeString.toStdString()).append(".jpg");
+
+    if(cv::imwrite(fileName, currentFrame))
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Screeshot correctly saved");
+        msgBox.exec();
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Failed to save screenshot, verify that the folder 'screens' exists.");
+        msgBox.exec();
+    }
 }
 
 void FaceDetectApp::refreshFrame()
 {
     cv::Mat singleFrame;
     capture >> singleFrame;
+    singleFrame.copyTo(currentFrame);
     if (!singleFrame.empty())
     {
         //buildMenu(singleFrame);
         printImage(WEBCAM_RAW_WINDOW_TITLE, singleFrame);
         printImage(WEBCAM_DETECT_WINDOW, faceRecognizer.detect(singleFrame));
-        printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame));
         printImage(WEBCAM_COLOR_WINDOW, colorDetector.detect(singleFrame));
         printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame));
+        printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame));
     }
     else
     {
@@ -76,34 +115,37 @@ void FaceDetectApp::refreshFrame()
 
 void FaceDetectApp::printImage(const char *windowName, cv::Mat frame)
 {
-    resultPrinter.find(windowName)->second->showImage(frame);
+    resultPrinter[windowName]->setImage(frame);
+    resultPrinter[windowName]->showImage();
 }
 
 int FaceDetectApp::mainLoop(int argc, char* argv[])
 {
     QApplication app(argc, argv);
-    QMainWindow mainWindow;
-    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_RAW_WINDOW_TITLE, new MyQtGui()));
-    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_DETECT_WINDOW, new MyQtGui()));
-    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_MVT_WINDOW, new MyQtGui()));
-    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_COLOR_WINDOW, new MyQtGui()));
-    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_CONTOUR_WINDOW, new MyQtGui()));
+    mainWindow = new QMainWindow();
+    timer = new QTimer(this);
+    timer->connect(timer, SIGNAL(timeout()), this, SLOT(refreshFrame()));
+    buildMenuBar();
 
-    QWidget* widget = new QWidget();
-    QGridLayout* layout = new QGridLayout();
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_RAW_WINDOW_TITLE, new MyQtGui(timer)));
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_DETECT_WINDOW, new MyQtGui(timer)));
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_MVT_WINDOW, new MyQtGui(timer)));
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_COLOR_WINDOW, new MyQtGui(timer)));
+    resultPrinter.insert(std::pair<const char*, MyQtGui*>(WEBCAM_CONTOUR_WINDOW, new MyQtGui(timer)));
 
-    layout->addWidget(resultPrinter.find(WEBCAM_RAW_WINDOW_TITLE)->second, 0, 0);
-    layout->addWidget(resultPrinter.find(WEBCAM_DETECT_WINDOW)->second, 0, 1);
-    layout->addWidget(resultPrinter.find(WEBCAM_MVT_WINDOW)->second, 1, 0);
-    layout->addWidget(resultPrinter.find(WEBCAM_COLOR_WINDOW)->second, 1, 1);
-    layout->addWidget(resultPrinter.find(WEBCAM_CONTOUR_WINDOW)->second, 1, 2);
+    widget = new QWidget();
+    layout = new QGridLayout();
+
+    layout->addWidget(resultPrinter[WEBCAM_RAW_WINDOW_TITLE], 0, 0);
+    layout->addWidget(resultPrinter[WEBCAM_DETECT_WINDOW], 0, 1);
+    layout->addWidget(resultPrinter[WEBCAM_MVT_WINDOW], 1, 0);
+    layout->addWidget(resultPrinter[WEBCAM_COLOR_WINDOW], 1, 1);
+    layout->addWidget(resultPrinter[WEBCAM_CONTOUR_WINDOW], 1, 2);
 
     widget->setLayout(layout);
-    mainWindow.setCentralWidget(widget);
-    mainWindow.show();
+    mainWindow->setCentralWidget(widget);
+    mainWindow->show();
 
-    QTimer *timer = new QTimer(this);
-    timer->connect(timer, SIGNAL(timeout()), this, SLOT(refreshFrame()));
     timer->start(WAITING_TIME_IN_MS);
     return app.exec();
 }

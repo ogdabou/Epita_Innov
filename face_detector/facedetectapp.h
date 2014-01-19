@@ -11,9 +11,16 @@
 #include <QDialog>
 #include <QApplication>
 #include <QMainWindow>
+#include <QMenuBar>
 #include <QObject>
 #include <QTimer>
 #include <QGridLayout>
+#include <algorithm>
+#include <QDate>
+#include <QString>
+#include <QMessageBox>
+#include <QDir>
+#include <string>
 
 class FaceDetectApp : QObject
 {
@@ -37,19 +44,27 @@ class FaceDetectApp : QObject
         Mvt_detection mvt_detect;
         ColorDetector colorDetector;
         ContourDetector contourDetector;
-
+        cv::Mat currentFrame;
         std::map<const char*, MyQtGui*> resultPrinter;
+
+        QWidget* widget;
+        QGridLayout* layout;
+        QMenuBar* menuBar;
+        QMainWindow* mainWindow;
+        QTimer *timer;
 
         void createWindows();
         void readParams(int argc, char* argv[]);
-        void buildMenu(cv::Mat frame);
+        void buildMenuBar();
         int openWebcamStream();
         int mainLoop(int argc, char* argv[]);
         void buildCentralWidget();
         void printImage(const char* windowName, cv::Mat frame);
+        void buildMyQtGuis(const char *windowTitle);
 
     public slots:
         void refreshFrame();
+        void saveScreenShot();
 };
 
 #endif // FACEDETECTAPP_H

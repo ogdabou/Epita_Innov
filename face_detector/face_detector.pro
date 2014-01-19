@@ -13,7 +13,8 @@ SOURCES += \
     mvt_detection.cpp \
     myqtgui.cpp \
     colordetector.cpp \
-    contourdetector.cpp
+    contourdetector.cpp \
+    interestzone.cpp
 
 OTHER_FILES += \
     haarcascade_frontalface_default.xml
@@ -25,5 +26,6 @@ HEADERS += \
     mvt_detection.h \
     myqtgui.h \
     colordetector.h \
-    contourdetector.h
+    contourdetector.h \
+    interestzone.h
 
