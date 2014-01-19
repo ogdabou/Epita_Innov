@@ -6,6 +6,7 @@
 #include "mvt_detection.h"
 #include "myqtgui.h"
 #include "colordetector.h"
+#include "contourdetector.h"
 
 #include <QDialog>
 #include <QApplication>
@@ -35,6 +36,7 @@ class FaceDetectApp : QObject
         MyRecognizer faceRecognizer;
         Mvt_detection mvt_detect;
         ColorDetector colorDetector;
+        ContourDetector contourDetector;
 
         std::map<const char*, MyQtGui*> resultPrinter;
 
