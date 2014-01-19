@@ -39,7 +39,6 @@ cv::Mat MyRecognizer::detect(cv::Mat frame)
         qDebug() << "the copied frame is empty";
     }
     classifier.detectMultiScale(frameCopy, detected_faces, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(60, 60));
-    qDebug() << detected_faces.size() << " faces detected";
     for (int i = 0; i < detected_faces.size(); i++)
     {
         cv::Rect currentRegion = detected_faces.at(i);

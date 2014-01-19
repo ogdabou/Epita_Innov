@@ -16,13 +16,6 @@ FaceDetectApp::~FaceDetectApp()
     cv::destroyAllWindows();
 }
 
-void FaceDetectApp::createWindows()
-{
-    cv::namedWindow(WEBCAM_DETECT_WINDOW, 1);
-    cv::namedWindow(WEBCAM_RAW_WINDOW_TITLE, 1);
-    cv::namedWindow(WEBCAM_MVT_WINDOW,1);
-}
-
 void FaceDetectApp::readParams(int argc, char* argv[])
 {
     if (argc > 1)
