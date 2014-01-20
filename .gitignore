@@ -23,7 +23,6 @@ face_detector/moc_*.cpp
 face_detector/*.mp4
 face_detector/*.mkv
 face_detector/*.ui
-face_detector/ui_*.h
 
 #Java projet
 .project

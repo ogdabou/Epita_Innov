@@ -5,7 +5,6 @@ CONFIG += qt
 INCLUDEPATH += /usr/include/opencv2
 
 LIBS += /usr/lib/libopencv*.so \
-        /usr/lib/libwebsockets.so \
         /usr/lib/libQtWebsocket.a
 
 QT += websockets \
