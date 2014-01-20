@@ -97,6 +97,16 @@ void FaceDetectApp::refreshFrame()
 {
     cv::Mat singleFrame;
     capture >> singleFrame;
+    if(oldFrame.empty())
+    {
+        singleFrame.copyTo(oldFrame);
+    }
+
+    singleFrame.size;
+    //cv::Mat tmp;
+    //cv::Size size(desktop->width() / 5, desktop->height() / 5);
+    //cv::resize(singleFrame, tmp, size, 0, 0, cv::INTER_CUBIC);
+    //tmp.copyTo(singleFrame);
     singleFrame.copyTo(currentFrame);
     if (!singleFrame.empty())
     {
@@ -105,12 +115,13 @@ void FaceDetectApp::refreshFrame()
         printImage(WEBCAM_DETECT_WINDOW, faceRecognizer.detect(singleFrame));
         printImage(WEBCAM_COLOR_WINDOW, colorDetector.detect(singleFrame));
         printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame));
-        printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame));
+        printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame, oldFrame));
     }
     else
     {
         qDebug() << "The frame is empty!";
     }
+    singleFrame.copyTo(oldFrame);
 }
 
 void FaceDetectApp::printImage(const char *windowName, cv::Mat frame)
@@ -122,7 +133,9 @@ void FaceDetectApp::printImage(const char *windowName, cv::Mat frame)
 int FaceDetectApp::mainLoop(int argc, char* argv[])
 {
     QApplication app(argc, argv);
+    desktop = QApplication::desktop();
     myClient = new Client();
+    //myClient->setFixedSize(desktop->width() / 3, desktop->height() / 3);
     mainWindow = new QMainWindow();
     timer = new QTimer(this);
     timer->connect(timer, SIGNAL(timeout()), this, SLOT(refreshFrame()));

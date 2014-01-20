@@ -22,6 +22,7 @@ public:
         this->writing = false;
     }
     MyQtGui(QTimer* timer);
+    MyQtGui(const int width, const int height);
 
     QSize sizeHint() const { return _qimage.size(); }
     QSize minimumSizeHint() const { return _qimage.size(); }

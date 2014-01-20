@@ -21,6 +21,7 @@
 #include <QDate>
 #include <QString>
 #include <QMessageBox>
+#include <QDesktopWidget>
 #include <QDir>
 #include <string>
 
@@ -47,6 +48,7 @@ class FaceDetectApp : QObject
         ColorDetector colorDetector;
         ContourDetector contourDetector;
         cv::Mat currentFrame;
+        cv::Mat oldFrame;
         std::map<const char*, MyQtGui*> resultPrinter;
         WebSocketServer* myServer;
         Client* myClient;
@@ -55,6 +57,7 @@ class FaceDetectApp : QObject
         QGridLayout* layout;
         QMenuBar* menuBar;
         QMainWindow* mainWindow;
+        QDesktopWidget* desktop;
         QTimer *timer;
 
         void createWindows();

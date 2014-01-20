@@ -25,7 +25,6 @@ void MyQtGui::showImage()
     message = sstm.str();
     cv::putText(currentImage, message, cvPoint(30, 40),
         cv::FONT_HERSHEY_COMPLEX_SMALL, 0.5, cvScalar(255,255,255), 1, CV_AA);
-//    qDebug() << zoneList.size() << " interest zones";
     for (unsigned int i = 0; i < zoneList.size(); i ++)
     {
         InterestZone zone = zoneList.at(i);
@@ -45,6 +44,10 @@ void MyQtGui::setImage(cv::Mat image)
     defaultZoneColor = cv::Scalar(255, 0, 0);
 }
 
+MyQtGui::MyQtGui(const int width, const int height)
+{
+    //this->setFixedSize(width / 8, height / 8);
+}
 
 void MyQtGui::mouseMoveEvent(QMouseEvent *event)
 {
@@ -52,8 +55,6 @@ void MyQtGui::mouseMoveEvent(QMouseEvent *event)
     {
         currentZone.p2.x = event->pos().x();
         currentZone.p2.y = event->pos().y();
-//        timer->stop();
-//        qDebug() << "(" << currentZone.p1.x << "," << currentZone.p1.y << ")";
         this->showImage();
     }
 }
@@ -70,7 +71,6 @@ void MyQtGui::mousePressEvent(QMouseEvent *event)
 
 void MyQtGui::mouseReleaseEvent(QMouseEvent *event)
 {
-    //timer->start();
     writing = false;
     zoneList.push_back(currentZone);
     currentZone.reset();
