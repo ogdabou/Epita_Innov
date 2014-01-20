@@ -52,6 +52,7 @@ class FaceDetectApp : QObject
         std::map<const char*, MyQtGui*> resultPrinter;
         WebSocketServer* myServer;
         Client* myClient;
+        std::vector<InterestZone>* list_inter_zone;
 
         QWidget* widget;
         QGridLayout* layout;

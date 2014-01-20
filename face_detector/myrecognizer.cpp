@@ -28,7 +28,7 @@ cv::Rect MyRecognizer::copyRect(cv::Rect tocopy)
     return copy;
 }
 
-cv::Mat MyRecognizer::detect(cv::Mat frame)
+cv::Mat MyRecognizer::detect(cv::Mat frame,  std::vector<InterestZone>* list_inter_zone)
 {
     std::vector<cv::Rect> detected_faces;
     cv::Mat frameCopy;

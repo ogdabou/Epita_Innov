@@ -2,13 +2,14 @@
 #define MYRECOGNIZER_HPP
 
 #include "mainHeader.hpp"
+#include "interestzone.h"
 
 class MyRecognizer
 {
     public:
         MyRecognizer();
         ~MyRecognizer();
-        cv::Mat detect(cv::Mat frame);
+        cv::Mat detect(cv::Mat frame,  std::vector<InterestZone>* list_inter_zone);
         void setClassifier(cv::CascadeClassifier ccl);
 
     private:

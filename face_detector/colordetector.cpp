@@ -10,7 +10,7 @@ ColorDetector::ColorDetector(cv::Scalar mincolor, cv::Scalar maxcolor)
     this->maxColor = maxcolor;
 }
 
-cv::Mat ColorDetector::detect(cv::Mat inputFrame)
+cv::Mat ColorDetector::detect(cv::Mat inputFrame, std::vector<InterestZone>* list_inter_zone)
 {
     cv::Mat tmp;
     inputFrame.copyTo(tmp);
