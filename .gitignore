@@ -20,6 +20,10 @@ face_detector-build-desktop-Qt_4_8_1_dans_le_PATH__Syst_me__Release/*
 face_detector/face_detector
 face_detector/face_detector.pro.user
 face_detector/moc_*.cpp
+face_detector/*.mp4
+face_detector/*.mkv
+face_detector/*.ui
+face_detector/ui_*.h
 
 #Java projet
 .project

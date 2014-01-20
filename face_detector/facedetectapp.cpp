@@ -122,6 +122,7 @@ void FaceDetectApp::printImage(const char *windowName, cv::Mat frame)
 int FaceDetectApp::mainLoop(int argc, char* argv[])
 {
     QApplication app(argc, argv);
+    myClient = new Client();
     mainWindow = new QMainWindow();
     timer = new QTimer(this);
     timer->connect(timer, SIGNAL(timeout()), this, SLOT(refreshFrame()));
@@ -141,6 +142,7 @@ int FaceDetectApp::mainLoop(int argc, char* argv[])
     layout->addWidget(resultPrinter[WEBCAM_MVT_WINDOW], 1, 0);
     layout->addWidget(resultPrinter[WEBCAM_COLOR_WINDOW], 1, 1);
     layout->addWidget(resultPrinter[WEBCAM_CONTOUR_WINDOW], 1, 2);
+    layout->addWidget(myClient, 0, 2);
 
     widget->setLayout(layout);
     mainWindow->setCentralWidget(widget);
@@ -148,6 +150,7 @@ int FaceDetectApp::mainLoop(int argc, char* argv[])
 
     timer->start(WAITING_TIME_IN_MS);
     myServer = new WebSocketServer(8082, QtWebsocket::Tcp);
+//    client.show();
     return app.exec();
 }
 

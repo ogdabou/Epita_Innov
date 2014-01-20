@@ -14,13 +14,14 @@ QT += websockets \
 SOURCES += \
     myrecognizer.cpp \
     facedetectapp.cpp \
-    main.cpp \
     mvt_detection.cpp \
     myqtgui.cpp \
     colordetector.cpp \
     contourdetector.cpp \
     interestzone.cpp \
-    Websocketserver.cpp
+    Websocketserver.cpp \
+    Client.cpp \
+    main.cpp
 
 OTHER_FILES += \
     haarcascade_frontalface_default.xml
@@ -39,5 +40,6 @@ HEADERS += \
     QWsServer.h \
     QWsHandshake.h \
     QWsFrame.h \
-    QTlsServer.h
+    QTlsServer.h \
+    Client.h
 

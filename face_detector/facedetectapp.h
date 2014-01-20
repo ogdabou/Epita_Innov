@@ -8,6 +8,7 @@
 #include "colordetector.h"
 #include "contourdetector.h"
 #include "Websocketserver.h"
+#include "Client.h"
 
 #include <QDialog>
 #include <QApplication>
@@ -48,6 +49,7 @@ class FaceDetectApp : QObject
         cv::Mat currentFrame;
         std::map<const char*, MyQtGui*> resultPrinter;
         WebSocketServer* myServer;
+        Client* myClient;
 
         QWidget* widget;
         QGridLayout* layout;
