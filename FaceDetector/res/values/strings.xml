@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FaceDetector</string>
+    <string name="action_settings">Settings</string>
+    <string name="start_note">Ajouter Notitification</string>
+    <string name="cancel_note">Supprimer notification</string>
+    <string name="title_activity_notification_view">NotificationView</string>
+    <string name="title_activity_connection">ConnectionActivity</string>
+    <string name="socket_launch">Start connexion</string>
+
+</resources>
