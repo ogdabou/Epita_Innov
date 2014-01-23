@@ -9,6 +9,9 @@ http://www.esiee.fr/~kachourr/Page_web/Enseignement/2012_2013/EL5E13/RK_EL5E13-T
 Face detector with OPENCV
 http://www.cs.princeton.edu/courses/archive/fall08/cos429/CourseMaterials/Precept1/facedetect.pdf
 
+Problemes websocket et réseau télécoms (3g & autres..)
+http://blog.hekkers.net/2012/12/09/websockets-and-mobile-network-operators/
+
 
 # PARTIE PC :
 -Pouvoir détecter les zones clés (portes, fenêtres...)
