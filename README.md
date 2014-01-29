@@ -12,6 +12,9 @@ http://www.cs.princeton.edu/courses/archive/fall08/cos429/CourseMaterials/Precep
 Problemes websocket et réseau télécoms (3g & autres..)
 http://blog.hekkers.net/2012/12/09/websockets-and-mobile-network-operators/
 
+WebSocket sur Android :
+https://github.com/koush/android-websockets
+
 
 # PARTIE PC :
 -Pouvoir détecter les zones clés (portes, fenêtres...)
