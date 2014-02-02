@@ -15,23 +15,32 @@
          android:layout_alignParentLeft="true"
          android:layout_alignParentTop="true"
          android:text="@string/start_note" />
-
-     <Button
-         android:id="@+id/cancel"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignLeft="@+id/start"
-         android:layout_below="@+id/start"
-         android:layout_marginTop="20dp"
-         android:text="@string/cancel_note" />
+     
+      <Button
+          android:id="@+id/cancel"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/start"
+          android:layout_below="@+id/start"
+          android:layout_marginTop="35dp"
+          android:text="@string/cancel_note" />
+      
+      <Button
+          android:id="@+id/openMovie"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/socketLaunch"
+          android:layout_below="@+id/socketLaunch"
+          android:layout_marginTop="41dp"
+          android:text="@string/open_movie" />
 
       <Button
           android:id="@+id/socketLaunch"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/start"
-          android:layout_below="@+id/start"
-          android:layout_marginTop="100dp"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/cancel"
+          android:layout_marginTop="119dp"
           android:text="@string/socket_launch" />
-
+      
 </RelativeLayout>

@@ -8,5 +8,7 @@
     <string name="title_activity_notification_view">NotificationView</string>
     <string name="title_activity_connection">ConnectionActivity</string>
     <string name="socket_launch">Start connexion</string>
+    <string name="title_activity_movie">MovieActivity</string>
+    <string name="open_movie">Open Movie</string>
 
 </resources>
