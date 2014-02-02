@@ -139,7 +139,7 @@ void FaceDetectApp::refreshFrame()
         printImage(WEBCAM_COLOR_WINDOW, colorDetector.detect(singleFrame, list_inter_zone));
         printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame, list_inter_zone));
         printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame, oldFrame, tmp));
-        printImage(WEBCAM_RAW_WINDOW_TITLE, gui.print(singleFrame,tmp));
+        printImage(WEBCAM_RAW_WINDOW_TITLE, gui.print(singleFrame,tmp, myServer));
     }
     else
     {
