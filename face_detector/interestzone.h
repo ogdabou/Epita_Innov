@@ -11,7 +11,7 @@ class InterestZone
         cv::Point p1;
         cv::Point p2;
         void reset();
-        bool motion = FALSE;
+        bool motion;
 };
 
 #endif // INTERESTZONE_H
