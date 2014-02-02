@@ -3,15 +3,21 @@
 
 #include "mainHeader.hpp"
 #include "interestzone.h"
+#include "myevents.h"
 
 class Mvt_detection
 {
 public:
     Mvt_detection();
     ~Mvt_detection();
-    cv::Mat start(cv::Mat frame, cv::Mat oldFrame,std::vector<InterestZone> list_inter_zone);
+    cv::Mat start(cv::Mat frame, cv::Mat oldFrame, std::vector<InterestZone> &list_inter_zone);
+    std::vector<std::vector<cv::Point> > findmvt_in_contours(std::vector<InterestZone> *list_inter_zone, std::vector<std::vector<cv::Point> > contours);
+
 protected:
-    cv::BackgroundSubtractorMOG2* bg;
+   //QEvent Mvt_in_zone;
+   bool evt = FALSE;
+   cv::BackgroundSubtractorMOG2* bg;
+
 };
 
 #endif // MVT_DETECTION_H
