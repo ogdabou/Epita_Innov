@@ -109,6 +109,17 @@ void FaceDetectApp::refreshFrame()
     //cv::resize(singleFrame, tmp, size, 0, 0, cv::INTER_CUBIC);
     //tmp.copyTo(singleFrame);
     singleFrame.copyTo(currentFrame);
+    MyQtGui* temp = resultPrinter.find(WEBCAM_DETECT_WINDOW)->second;
+   /** std::vector<> zone_list;// = new std::vector<cv::Point>();
+    for (int i = 0 ; i < temp->getZoneList().size(); i++) {
+        InterestZone t = temp->getZoneList()[i];
+        std::vector<cv::Point> point_list;
+        point_list.push_back(t.p1);
+        point_list.push_back(t.p2);
+        zone_list.push_back(point_list);
+    }*/
+
+
     if (!singleFrame.empty())
     {
         //buildMenu(singleFrame);
@@ -116,7 +127,7 @@ void FaceDetectApp::refreshFrame()
         printImage(WEBCAM_DETECT_WINDOW, faceRecognizer.detect(singleFrame, list_inter_zone));
         printImage(WEBCAM_COLOR_WINDOW, colorDetector.detect(singleFrame, list_inter_zone));
         printImage(WEBCAM_CONTOUR_WINDOW, contourDetector.detect(singleFrame, list_inter_zone));
-        printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame, oldFrame));
+        printImage(WEBCAM_MVT_WINDOW, mvt_detect.start(singleFrame, oldFrame, temp->getZoneList()));
     }
     else
     {
