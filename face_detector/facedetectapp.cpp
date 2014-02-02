@@ -55,10 +55,19 @@ void FaceDetectApp::buildMenuBar()
     menuBar = new QMenuBar();
     QMenu* fileMenu = menuBar->addMenu("File");
 
-    QAction* takeScreenShot = new QAction("save screenshot", fileMenu);
+    QAction* takeScreenShot = new QAction("Save screenshot", fileMenu);
     connect(takeScreenShot, SIGNAL(triggered()), this, SLOT(saveScreenShot()));
     fileMenu->addAction(takeScreenShot);
     mainWindow->setMenuBar(menuBar);
+
+    QAction* sendScreenshot = new QAction("Send screenshot", fileMenu);
+    connect(sendScreenshot, SIGNAL(triggered()), this, SLOT(sendScreenshotToClients()));
+    fileMenu->addAction(sendScreenshot);
+}
+
+void FaceDetectApp::sendScreenshotToClients()
+{
+    myServer->sendImage(oldFrame);
 }
 
 void FaceDetectApp::saveScreenShot()

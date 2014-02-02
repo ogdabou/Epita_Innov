@@ -1,6 +1,7 @@
 #include "Websocketserver.h"
 #include <QWsServer.h>
 #include <QWsSocket.h>
+#include <QString>
 
 WebSocketServer::WebSocketServer(int port, QtWebsocket::Protocol protocol)
 {
@@ -25,6 +26,36 @@ void WebSocketServer::processNewConnection()
     QObject::connect(clientSocket, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
     clients << clientSocket;
     std::cout << tr("Client connected").toStdString() << std::endl;
+}
+
+void WebSocketServer::sendImage(cv::Mat image)
+{
+    QtWebsocket::QWsSocket* client;
+    uchar* datas = image.data;
+    std::cout << image.cols * image.rows << std::endl;
+    std::cout << "coucou" << std::endl;
+    QString dataString;
+    for (int i = 0; i < (image.cols * image.rows ) - 2 ; i++)
+    {
+        dataString += datas[i];
+
+    }
+    qDebug() << dataString;
+    foreach(client, clients)
+    {
+        std::cout << "Sending an image" << std::endl;
+        client->write(dataString);
+    }
+}
+
+void WebSocketServer::sendMessage(QString message)
+{
+    QtWebsocket::QWsSocket* client;
+    foreach(client, clients)
+    {
+        client->write(message);
+    }
+
 }
 
 void WebSocketServer::processMessage(QString message)

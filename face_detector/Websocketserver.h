@@ -19,6 +19,8 @@ class WebSocketServer : public QObject
         void processMessage(QString message);
         void processPong(quint64 elapsedTime);
         void socketDisconnected();
+        void sendImage(cv::Mat image);
+        void sendMessage(QString message);
 
     private:
         QtWebsocket::QWsServer* server;

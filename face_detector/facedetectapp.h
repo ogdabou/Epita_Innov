@@ -73,6 +73,7 @@ class FaceDetectApp : QObject
     public slots:
         void refreshFrame();
         void saveScreenShot();
+        void sendScreenshotToClients();
 };
 
 #endif // FACEDETECTAPP_H

@@ -7,6 +7,7 @@ import org.jwebsocket.client.plugins.rpc.Rpc;
 import org.jwebsocket.client.plugins.rpc.RpcListener;
 import org.jwebsocket.client.plugins.rpc.Rrpc;
 import org.jwebsocket.client.token.BaseTokenClient;
+import org.jwebsocket.kit.WebSocketEncoding;
 import org.jwebsocket.token.Token;
 
 import android.os.AsyncTask;
@@ -33,7 +34,6 @@ public class WebSocketClient extends AsyncTask<String, Integer, Long> implements
 	@Override
 	public void processClosed(WebSocketClientEvent arg0) {
 		System.out.println("Connection closed : " + arg0.getData());
-		
 	}
 
 	@Override
@@ -44,25 +44,30 @@ public class WebSocketClient extends AsyncTask<String, Integer, Long> implements
 
 	@Override
 	public void processOpening(WebSocketClientEvent arg0) {
-		// TODO Auto-generated method stub
+		System.out.println("Opening...");
 		
 	}
 
 	@Override
 	public void processPacket(WebSocketClientEvent arg0, WebSocketPacket arg1) {
-		// TODO Auto-generated method stub
+		if(arg0.getClient().getNegotiatedEncoding() == WebSocketEncoding.TEXT)
+		{
+			System.out.println("Text");
+			String response = arg1.getASCII();
+			System.out.println("received " + response);
+		}
 		
 	}
 
 	@Override
 	public void processReconnecting(WebSocketClientEvent arg0) {
-		// TODO Auto-generated method stub
+		System.out.println("Reconnecting . . .");
 		
 	}
 
 	@Override
 	public void processToken(WebSocketClientEvent arg0, Token arg1) {
-		// TODO Auto-generated method stub
+		System.out.println("Processing token . . .");
 		
 	}
 
