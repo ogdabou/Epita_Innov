@@ -1,9 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-
+      <item android:id="@+id/save_movie"
+          android:icon="@drawable/ic_launcher"   
+          android:title="@string/save_movie" />
+    
+      <item android:id="@+id/delete_movie"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/delete_movie" />
+      
+       <item android:id="@+id/call_police"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/appel_police" />
+       
+        <item android:id="@+id/send_message"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/envoie_texto" />
 </menu>

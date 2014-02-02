@@ -6,13 +6,11 @@ import android.view.Menu;
 
 import org.jwebsocket.api.WebSocketClientEvent;
 import org.jwebsocket.api.WebSocketClientListener;
-import org.jwebsocket.api.WebSocketClientTokenListener;
 import org.jwebsocket.api.WebSocketPacket;
 import org.jwebsocket.client.plugins.rpc.Rpc;
 import org.jwebsocket.client.plugins.rpc.RpcListener;
 import org.jwebsocket.client.plugins.rpc.Rrpc;
 import org.jwebsocket.client.token.BaseTokenClient;
-import org.jwebsocket.token.Token;
 
 public class ConnectionActivity extends Activity implements WebSocketClientListener {
 
