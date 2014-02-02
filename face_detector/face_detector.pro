@@ -23,8 +23,7 @@ SOURCES += \
     main.cpp
 
 OTHER_FILES += \
-    haarcascade_frontalface_default.xml \
-    Makefile
+    haarcascade_frontalface_default.xml
 
 HEADERS += \
     myrecognizer.hpp \

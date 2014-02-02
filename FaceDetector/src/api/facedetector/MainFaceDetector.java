@@ -62,10 +62,7 @@ public class MainFaceDetector extends Activity {
             	
           } });
         
-        
-        
-        
-        //bouton pour creer la notif
+        //bouton pour creer la notification
         Button start = (Button) findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -74,7 +71,7 @@ public class MainFaceDetector extends Activity {
 			}
 		});
         
-        //bouton pour supprimer la notif
+        //bouton pour supprimer la notification
         Button cancel = (Button) findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -84,7 +81,7 @@ public class MainFaceDetector extends Activity {
 		});
         
         
-        //bouton pour supprimer la notif
+        //bouton pour lancer la connection entre le l'appli et l'appli pc
         Button socketLaunch = (Button) findViewById(R.id.socketLaunch);
         socketLaunch.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -92,6 +89,16 @@ public class MainFaceDetector extends Activity {
 				openSocket();
 			}
 		});
+       
+        //juste pour tester l'affichage d'une image
+        Button openMovie = (Button) findViewById(R.id.openMovie);
+        start.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				OpenMovie();
+			}
+		});
+      
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN) protected void displayNotification()
@@ -138,6 +145,11 @@ public class MainFaceDetector extends Activity {
     	//this.setIntent(connectionActivity);
     }
     
+    
+    protected void OpenMovie() {
+    	//Intent MovieActivity = new Intent(this, MovieActivity.class);
+    	//this.setIntent(MovieActivity);
+    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
