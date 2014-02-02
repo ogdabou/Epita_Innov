@@ -28,8 +28,8 @@ public:
     QSize minimumSizeHint() const { return _qimage.size(); }
 
 
-    std::vector<InterestZone> getZoneList() const;
-    void setZoneList(const std::vector<InterestZone> &value);
+    std::vector<InterestZone> getZoneList();
+    void setZoneList(std::vector<InterestZone> &value);
 
 public slots:
     void showImage();

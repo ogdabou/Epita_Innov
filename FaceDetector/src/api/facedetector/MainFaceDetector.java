@@ -1,29 +1,66 @@
 package api.facedetector;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainFaceDetector extends Activity {
 	 private NotificationManager notificationManager;
 	 private int notificationID = 100;
 	 private int numMessages = 0;
+	 private View connectDialog;
+	 LayoutInflater layout;
+	 AlertDialog.Builder adb;
+	 EditText urlEdit;
+	 WebSocketClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_face_detector);
+        
+        // WebSocket
+        WebSocketClient client = new WebSocketClient();
+        client.execute("");
+        layout = LayoutInflater.from(this);
+        connectDialog = layout.inflate(R.layout.connectdialog, null);
+        adb = new AlertDialog.Builder(this);
+        adb.setView(connectDialog);
+        adb.setTitle("Connection to the server.");
+        adb.setIcon(android.R.drawable.ic_dialog_alert);
+        adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+ 
+            	//Lorsque l'on cliquera sur le bouton "OK", on récupère l'EditText correspondant à notre vue personnalisée (cad à alertDialogView)
+            	urlEdit = (EditText)connectDialog.findViewById(R.id.EditText1);
+ 
+            	//On affiche dans un Toast le texte contenu dans l'EditText de notre AlertDialog
+            	Toast.makeText(MainFaceDetector.this, urlEdit.getText(), Toast.LENGTH_SHORT).show();
+          } });
+ 
+        //On crée un bouton "Annuler" à notre AlertDialog et on lui affecte un évènement
+        adb.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            	
+          } });
         
         //bouton pour creer la notification
         Button start = (Button) findViewById(R.id.start);
@@ -103,14 +140,15 @@ public class MainFaceDetector extends Activity {
     }
     
     protected void openSocket() {
-    	Intent connectionActivity = new Intent(this, ConnectionActivity.class);
-    	this.setIntent(connectionActivity);
+    	adb.show();
+    	//Intent connectionActivity = new Intent(this, ConnectionActivity.class);
+    	//this.setIntent(connectionActivity);
     }
     
     
     protected void OpenMovie() {
-    	Intent MovieActivity = new Intent(this, MovieActivity.class);
-    	this.setIntent(MovieActivity);
+    	//Intent MovieActivity = new Intent(this, MovieActivity.class);
+    	//this.setIntent(MovieActivity);
     }
     
     @Override
@@ -119,5 +157,4 @@ public class MainFaceDetector extends Activity {
         getMenuInflater().inflate(R.menu.main_face_detector, menu);
         return true;
     }
-    
 }

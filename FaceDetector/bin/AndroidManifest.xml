@@ -43,10 +43,6 @@
             android:name="api.facedetector.ConnectionActivity"
             android:label="@string/title_activity_connection" >
         </activity>
-        <activity
-            android:name="api.facedetector.MovieActivity"
-            android:label="@string/title_activity_movie" >
-        </activity>
     </application>
 
 </manifest>
