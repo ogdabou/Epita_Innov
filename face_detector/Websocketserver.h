@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "QWsServer.h"
 #include "QWsSocket.h"
+#include <QImage>
+#include <QBuffer>
 
 class WebSocketServer : public QObject
 {
@@ -26,6 +28,7 @@ class WebSocketServer : public QObject
         QtWebsocket::QWsServer* server;
         QList<QtWebsocket::QWsSocket*> clients;
         QString toReadableAscii(QString string);
+        QString encodeToBase64(QImage image);
 };
 
 #endif // WEBSOCKETSERVER_H

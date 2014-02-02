@@ -41,11 +41,27 @@ void WebSocketServer::sendImage(cv::Mat image)
 
     }
     qDebug() << dataString;
+    std::cout << "Sending an image" << std::endl;
+    cv::Mat dst;
+    cv::cvtColor(image, dst, CV_BGR2RGB);
+    QImage imageAsQImage((uchar*)dst.data, dst.cols, dst.rows, QImage::Format_RGB32);
+
+
+    QString encodedImage = encodeToBase64(imageAsQImage);
+
     foreach(client, clients)
     {
-        std::cout << "Sending an image" << std::endl;
-        client->write(dataString);
+        client->write()
+        //client->write(dataString);
     }
+}
+
+QString WebSocketServer::encodeToBase64(QImage image)
+{
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    image.save(&buffer,"PNG");
+    return QString::fromLatin1(byteArray.toBase64().data());
 }
 
 void WebSocketServer::sendMessage(QString message)

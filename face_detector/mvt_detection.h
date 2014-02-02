@@ -3,7 +3,6 @@
 
 #include "mainHeader.hpp"
 #include "interestzone.h"
-#include "myevents.h"
 
 class Mvt_detection
 {
@@ -15,7 +14,7 @@ public:
 
 protected:
    //QEvent Mvt_in_zone;
-   bool evt = FALSE;
+   bool evt;
    cv::BackgroundSubtractorMOG2* bg;
 
 };
