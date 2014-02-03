@@ -17,15 +17,11 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-<<<<<<< HEAD
 import android.view.MenuItem;
-
-=======
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
->>>>>>> 7748185f3bbfcaf2c7c1c54050a5b555b237deca
 
 public class MainFaceDetector extends Activity {
 	 private NotificationManager notificationManager;
@@ -146,21 +142,5 @@ public class MainFaceDetector extends Activity {
     	//Intent connectionActivity = new Intent(this, ConnectionActivity.class);
     	//this.setIntent(connectionActivity);
     }
-<<<<<<< HEAD
 
-=======
-    
-    
-    protected void OpenMovie() {
-    	//Intent MovieActivity = new Intent(this, MovieActivity.class);
-    	//this.setIntent(MovieActivity);
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_face_detector, menu);
-        return true;
-    }
->>>>>>> 7748185f3bbfcaf2c7c1c54050a5b555b237deca
 }

@@ -24,27 +24,18 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-<<<<<<< HEAD
-        public static final int action_settings=0x7f080001;
-        public static final int call_police=0x7f080008;
-        public static final int cancel=0x7f080005;
-        public static final int delete_movie=0x7f080007;
-        public static final int openMovie=0x7f080003;
-        public static final int save_movie=0x7f080006;
-        public static final int send_message=0x7f080009;
-        public static final int socketLaunch=0x7f080004;
-        public static final int start=0x7f080002;
+        public static final int EditText1=0x7f080002;
+        public static final int TextView1=0x7f080001;
+        public static final int action_settings=0x7f080003;
+        public static final int call_police=0x7f08000a;
+        public static final int cancel=0x7f080007;
+        public static final int delete_movie=0x7f080009;
+        public static final int openMovie=0x7f080005;
+        public static final int save_movie=0x7f080008;
+        public static final int send_message=0x7f08000b;
+        public static final int socketLaunch=0x7f080006;
+        public static final int start=0x7f080004;
         public static final int videoView1=0x7f080000;
-=======
-        public static final int EditText1=0x7f080006;
-        public static final int TextView1=0x7f080005;
-        public static final int action_settings=0x7f080007;
-        public static final int cancel=0x7f080001;
-        public static final int openMovie=0x7f080002;
-        public static final int socketLaunch=0x7f080003;
-        public static final int start=0x7f080000;
-        public static final int videoView1=0x7f080004;
->>>>>>> 7748185f3bbfcaf2c7c1c54050a5b555b237deca
     }
     public static final class layout {
         public static final int activity_connection=0x7f030000;
