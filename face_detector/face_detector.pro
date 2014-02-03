@@ -20,11 +20,11 @@ SOURCES += \
     interestzone.cpp \
     Websocketserver.cpp \
     Client.cpp \
-    main.cpp
+    main.cpp \
+    usergui.cpp
 
 OTHER_FILES += \
-    haarcascade_frontalface_default.xml \
-    Makefile
+    haarcascade_frontalface_default.xml
 
 HEADERS += \
     myrecognizer.hpp \
@@ -41,5 +41,6 @@ HEADERS += \
     QWsHandshake.h \
     QWsFrame.h \
     QTlsServer.h \
-    Client.h
+    Client.h \
+    usergui.h
 

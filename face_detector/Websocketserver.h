@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "QWsServer.h"
 #include "QWsSocket.h"
+#include <QImage>
+#include <QBuffer>
 
 class WebSocketServer : public QObject
 {
@@ -19,11 +21,14 @@ class WebSocketServer : public QObject
         void processMessage(QString message);
         void processPong(quint64 elapsedTime);
         void socketDisconnected();
+        void sendImage(cv::Mat image);
+        void sendMessage(QString message);
 
     private:
         QtWebsocket::QWsServer* server;
         QList<QtWebsocket::QWsSocket*> clients;
         QString toReadableAscii(QString string);
+        QString encodeToBase64(QImage image);
 };
 
 #endif // WEBSOCKETSERVER_H

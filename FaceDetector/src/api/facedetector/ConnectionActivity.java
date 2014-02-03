@@ -16,30 +16,31 @@ public class ConnectionActivity extends Activity implements WebSocketClientListe
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_connection);
-		
-		BaseTokenClient tocken_client = new BaseTokenClient();
-		tocken_client.addListener(this);
-		tocken_client.addListener(new RpcListener());
-		
-		//set token_client as rpc and rrpc default base token 
-		Rpc.setDefaultBaseTokenClient(tocken_client);
-		Rrpc.setDefaultBaseTokenClient(tocken_client);
-		try{
-			System.out.println("try the connection");
-			tocken_client.open("ws://192.168.178.3:8787/jWebSocket/jWebSocket");
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.activity_connection);
+//		
+//		BaseTokenClient tocken_client = new BaseTokenClient();
+//		tocken_client.addListener(this);
+//		tocken_client.addListener(new RpcListener());
+//		
+//		//set token_client as rpc and rrpc default base token 
+//		Rpc.setDefaultBaseTokenClient(tocken_client);
+//		Rrpc.setDefaultBaseTokenClient(tocken_client);
+//		try{
+//			System.out.println("try the connection");
+//			tocken_client.open("ws://192.168.178.3:8787/jWebSocket/jWebSocket");
+//			
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
 		
 		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.connection, menu);
+//		getMenuInflater().inflate(R.menu.connection, menu);
+//		return true;
 		return true;
 	}
 

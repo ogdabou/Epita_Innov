@@ -81,12 +81,12 @@ MyQtGui::MyQtGui(QTimer *timer)
     this->timer = timer;
 }
 
-std::vector<InterestZone> MyQtGui::getZoneList() const
+std::vector<InterestZone> MyQtGui::getZoneList()
 {
     return zoneList;
 }
 
-void MyQtGui::setZoneList(const std::vector<InterestZone> &value)
+void MyQtGui::setZoneList(std::vector<InterestZone> &value)
 {
     zoneList = value;
 }

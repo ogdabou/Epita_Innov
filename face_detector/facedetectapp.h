@@ -9,6 +9,7 @@
 #include "contourdetector.h"
 #include "Websocketserver.h"
 #include "Client.h"
+#include "usergui.h"
 
 #include <QDialog>
 #include <QApplication>
@@ -44,6 +45,7 @@ class FaceDetectApp : QObject
         cv::VideoCapture capture;
         cv::CascadeClassifier classifier;
         MyRecognizer faceRecognizer;
+        UserGUI gui;
         Mvt_detection mvt_detect;
         ColorDetector colorDetector;
         ContourDetector contourDetector;
@@ -73,6 +75,7 @@ class FaceDetectApp : QObject
     public slots:
         void refreshFrame();
         void saveScreenShot();
+        void sendScreenshotToClients();
 };
 
 #endif // FACEDETECTAPP_H

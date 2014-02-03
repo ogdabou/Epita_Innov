@@ -1,6 +1,7 @@
 #include "Websocketserver.h"
 #include <QWsServer.h>
 #include <QWsSocket.h>
+#include <QString>
 
 WebSocketServer::WebSocketServer(int port, QtWebsocket::Protocol protocol)
 {
@@ -25,6 +26,52 @@ void WebSocketServer::processNewConnection()
     QObject::connect(clientSocket, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
     clients << clientSocket;
     std::cout << tr("Client connected").toStdString() << std::endl;
+}
+
+void WebSocketServer::sendImage(cv::Mat image)
+{
+    QtWebsocket::QWsSocket* client;
+    uchar* datas = image.data;
+    std::cout << image.cols * image.rows << std::endl;
+    std::cout << "coucou" << std::endl;
+    QString dataString;
+    for (int i = 0; i < (image.cols * image.rows ) - 2 ; i++)
+    {
+        dataString += datas[i];
+
+    }
+    qDebug() << dataString;
+    std::cout << "Sending an image" << std::endl;
+    cv::Mat dst;
+    cv::cvtColor(image, dst, CV_BGR2RGB);
+    QImage imageAsQImage((uchar*)dst.data, dst.cols, dst.rows, QImage::Format_RGB32);
+
+
+    QString encodedImage = encodeToBase64(imageAsQImage);
+
+    foreach(client, clients)
+    {
+        client->write(encodedImage);
+        //client->write(dataString);
+    }
+}
+
+QString WebSocketServer::encodeToBase64(QImage image)
+{
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    image.save(&buffer,"PNG");
+    return QString::fromLatin1(byteArray.toBase64().data());
+}
+
+void WebSocketServer::sendMessage(QString message)
+{
+    QtWebsocket::QWsSocket* client;
+    foreach(client, clients)
+    {
+        client->write(message);
+    }
+
 }
 
 void WebSocketServer::processMessage(QString message)
