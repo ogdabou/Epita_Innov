@@ -27,3 +27,4 @@ face_detector/*.ui
 #Java projet
 .project
 .classpath
+FaceDetector/bin/*
