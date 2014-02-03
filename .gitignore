@@ -28,3 +28,4 @@ face_detector/*.ui
 .project
 .classpath
 FaceDetector/bin/*
+FaceDetector/.settings/*
