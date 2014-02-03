@@ -52,9 +52,7 @@ public class WebSocketClient extends AsyncTask<String, Integer, Long> implements
 	public void processPacket(WebSocketClientEvent arg0, WebSocketPacket arg1) {
 		if(arg0.getClient().getNegotiatedEncoding() == WebSocketEncoding.TEXT)
 		{
-			System.out.println("Text");
 			String response = arg1.getASCII();
-			System.out.println("received " + response);
 		}
 		
 	}

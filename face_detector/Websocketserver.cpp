@@ -51,7 +51,7 @@ void WebSocketServer::sendImage(cv::Mat image)
 
     foreach(client, clients)
     {
-        client->write()
+        client->write(encodedImage);
         //client->write(dataString);
     }
 }
