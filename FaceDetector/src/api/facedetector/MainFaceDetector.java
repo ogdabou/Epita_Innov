@@ -17,6 +17,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,44 +64,42 @@ public class MainFaceDetector extends Activity {
           } });
         
         //bouton pour creer la notification
-        Button start = (Button) findViewById(R.id.start);
+       /* Button start = (Button) findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				displayNotification();
 			}
-		});
-        
-        //bouton pour supprimer la notification
-        Button cancel = (Button) findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				cancelNotification();
-			}
-		});
-        
-        
-        //bouton pour lancer la connection entre le l'appli et l'appli pc
-        Button socketLaunch = (Button) findViewById(R.id.socketLaunch);
-        socketLaunch.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				openSocket();
-			}
-		});
-       
-        //juste pour tester l'affichage d'une image
-        Button openMovie = (Button) findViewById(R.id.openMovie);
-        start.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				OpenMovie();
-			}
-		});
-      
+		});*/
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.start:
+            	displayNotification();
+                return true;
+            case R.id.socketLaunch:
+            	openSocket();
+                return true;
+            case R.id.cancel:
+            	cancelNotification();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    
+    
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN) protected void displayNotification()
     {
     	Log.i("start", "start notification");
@@ -135,8 +134,7 @@ public class MainFaceDetector extends Activity {
     }
 
     protected void cancelNotification() {
-        Log.i("Cancel", "notification");
-        notificationManager.cancel(notificationID);
+        finish();
     }
     
     protected void openSocket() {
@@ -144,17 +142,5 @@ public class MainFaceDetector extends Activity {
     	//Intent connectionActivity = new Intent(this, ConnectionActivity.class);
     	//this.setIntent(connectionActivity);
     }
-    
-    
-    protected void OpenMovie() {
-    	//Intent MovieActivity = new Intent(this, MovieActivity.class);
-    	//this.setIntent(MovieActivity);
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_face_detector, menu);
-        return true;
-    }
+
 }

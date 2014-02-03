@@ -2,7 +2,7 @@ package api.facedetector;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+//import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class MovieActivity extends Activity {
 
@@ -12,10 +12,6 @@ public class MovieActivity extends Activity {
 		setContentView(R.layout.activity_movie);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.movie, menu);
-		return true;
-	}
-
+	
+	
 }

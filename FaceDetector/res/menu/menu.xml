@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+	<item android:id="@+id/start"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/start_note" />
+     
+    <item android:id="@+id/openMovie"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/open_movie" >
+    </item>
+   
+    <item android:id="@+id/socketLaunch"
+          android:icon="@drawable/ic_launcher"   
+          android:title="@string/socket_launch" />
+    
+    <item android:id="@+id/cancel"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/cancel_note" />
+</menu>
