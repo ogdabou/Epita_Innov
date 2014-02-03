@@ -10,7 +10,10 @@ import org.jwebsocket.client.token.BaseTokenClient;
 import org.jwebsocket.kit.WebSocketEncoding;
 import org.jwebsocket.token.Token;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 
 public class WebSocketClient extends AsyncTask<String, Integer, Long> implements WebSocketClientTokenListener{
 
@@ -53,6 +56,17 @@ public class WebSocketClient extends AsyncTask<String, Integer, Long> implements
 		if(arg0.getClient().getNegotiatedEncoding() == WebSocketEncoding.TEXT)
 		{
 			String response = arg1.getASCII();
+			// send event, like screenshotRequestEvent, videoRequestEvent
+			if (response.contains("Event"))
+			{
+				
+			}
+			else
+			{
+				// then its an image, encoded in base64
+				byte[] decodedBytes = Base64.decode(response, 0);
+				Bitmap image = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+			}
 		}
 		
 	}
