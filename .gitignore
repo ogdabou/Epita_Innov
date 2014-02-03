@@ -30,3 +30,4 @@ face_detector/*.ui
 FaceDetector/bin/
 FaceDetector/.settings/
 .metadata/
+FaceDetector/bin/
