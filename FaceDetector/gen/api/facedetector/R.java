@@ -21,7 +21,8 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int android=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
         public static final int EditText1=0x7f080002;
@@ -30,12 +31,12 @@ public final class R {
         public static final int call_police=0x7f08000a;
         public static final int cancel=0x7f080007;
         public static final int delete_movie=0x7f080009;
+        public static final int notifImage=0x7f080000;
         public static final int openMovie=0x7f080005;
         public static final int save_movie=0x7f080008;
         public static final int send_message=0x7f08000b;
         public static final int socketLaunch=0x7f080006;
         public static final int start=0x7f080004;
-        public static final int videoView1=0x7f080000;
     }
     public static final class layout {
         public static final int activity_connection=0x7f030000;
@@ -57,6 +58,7 @@ public final class R {
         public static final int cancel_note=0x7f050003;
         public static final int delete_movie=0x7f05000a;
         public static final int envoie_texto=0x7f05000c;
+        public static final int notifContent=0x7f05000d;
         public static final int open_movie=0x7f050008;
         public static final int save_movie=0x7f050009;
         public static final int socket_launch=0x7f050006;

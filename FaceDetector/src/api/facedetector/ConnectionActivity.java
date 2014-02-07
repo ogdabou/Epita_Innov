@@ -1,16 +1,12 @@
 package api.facedetector;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-
 import org.jwebsocket.api.WebSocketClientEvent;
 import org.jwebsocket.api.WebSocketClientListener;
 import org.jwebsocket.api.WebSocketPacket;
-import org.jwebsocket.client.plugins.rpc.Rpc;
-import org.jwebsocket.client.plugins.rpc.RpcListener;
-import org.jwebsocket.client.plugins.rpc.Rrpc;
-import org.jwebsocket.client.token.BaseTokenClient;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
 
 public class ConnectionActivity extends Activity implements WebSocketClientListener {
 

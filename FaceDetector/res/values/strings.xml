@@ -14,5 +14,6 @@
     <string name="delete_movie">Supprimer Video</string>
     <string name="appel_police">Appeler police</string>
     <string name="envoie_texto">Envoyer</string>
+    <string name="notifContent">Image</string>
 
 </resources>

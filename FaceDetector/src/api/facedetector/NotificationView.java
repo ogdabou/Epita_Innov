@@ -11,25 +11,45 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class NotificationView extends Activity {
 
+	private Bundle extras;
+	private Bitmap singleScreenShot;
+	private ImageView screesnShotView;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notification_view);
+		System.out.println("WESH");
+		
+		extras = getIntent().getExtras();
+		if (extras.getByteArray("image") != null)
+		{
+			byte[] imageAsBytes = extras.getByteArray("image");
+			singleScreenShot =  BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+			screesnShotView = (ImageView)findViewById(R.id.notifImage);
+//			screesnShotView.setImageResource(R.drawable.android);
+			screesnShotView.setImageBitmap(singleScreenShot);
+			screesnShotView.invalidate();
+			System.out.println("Image has been setted.");
+		}
 		
 		// Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
+        
 	}
 	
 	//focntion to go back to the parent activity or home

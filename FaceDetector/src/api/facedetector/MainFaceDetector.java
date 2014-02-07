@@ -39,7 +39,7 @@ public class MainFaceDetector extends Activity {
         setContentView(R.layout.activity_main_face_detector);
         
         // WebSocket
-        WebSocketClient client = new WebSocketClient();
+        client = new WebSocketClient();
         client.execute("");
         layout = LayoutInflater.from(this);
         connectDialog = layout.inflate(R.layout.connectdialog, null);
@@ -116,6 +116,7 @@ public class MainFaceDetector extends Activity {
     	//create intent for the movie ativity
     		
 		Intent movieActivityIntent = new Intent(this, NotificationView.class);
+		movieActivityIntent.putExtra("image", client.getLastImage());
     	
 		TaskStackBuilder stacktBuilder = TaskStackBuilder.create(this);
     	stacktBuilder.addParentStack(NotificationView.class);
