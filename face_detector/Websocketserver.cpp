@@ -32,8 +32,6 @@ void WebSocketServer::sendImage(cv::Mat image)
 {
     QtWebsocket::QWsSocket* client;
     uchar* datas = image.data;
-    std::cout << image.cols * image.rows << std::endl;
-    std::cout << "coucou" << std::endl;
     QString dataString;
     for (int i = 0; i < (image.cols * image.rows ) - 2 ; i++)
     {
@@ -47,13 +45,75 @@ void WebSocketServer::sendImage(cv::Mat image)
     QImage imageAsQImage((uchar*)dst.data, dst.cols, dst.rows, QImage::Format_RGB32);
 
 
+
     QString encodedImage = encodeToBase64(imageAsQImage);
 
+//    foreach(client, clients)
+//    {
+//        client->write(encodedImage);
+//        //client->write(dataString);
+//    }
+
+    if(!QDir("tmp/").exists())
+    {
+        QDir().mkdir("tmp/");
+    }
+
+    std::string fileName;
+    fileName.append("tmp/").append("/tmp").append(".png");
+
+    if(cv::imwrite(fileName, image))
+    {
+//        QMessageBox msgBox;
+//        msgBox.setText("Screeshot correctly saved");
+//        msgBox.exec();
+    }
+    else
+    {
+
+    }
+
+    QImage savecTmp("tmp/tmp.png");
+    QString reallyEncodedImage = encodeToBase64(savecTmp);
+
+    qDebug() << reallyEncodedImage;
+    qDebug() << reallyEncodedImage.size();
+    std::vector<QString> frags;
+    int i = 0;
+    while(i < reallyEncodedImage.size())
+    {
+        frags.push_back(QString(reallyEncodedImage.mid(i,1399)));
+        i += 1399;
+        if (i >= reallyEncodedImage.size())
+        {
+            i--;
+            frags.push_back(QString(reallyEncodedImage.mid(i, i - reallyEncodedImage.size())));
+        }
+    }
+//    QtWebsocket::QWsSocket::maxBytesPerFrame = reallyEncodedImage.size();
     foreach(client, clients)
     {
-        client->write(encodedImage);
-        //client->write(dataString);
+        client->write(reallyEncodedImage);
     }
+
+//    foreach(QString frag, frags)
+//    {
+//        foreach(client, clients)
+//        {
+////            client->write(frag);
+//            qDebug() << reallyEncodedImage.size();
+//            client->write(frag);
+////                        client->waitForBytesWritten(10000);
+//        }
+//    }
+
+
+
+
+
+
+
+
 }
 
 QString WebSocketServer::encodeToBase64(QImage image)

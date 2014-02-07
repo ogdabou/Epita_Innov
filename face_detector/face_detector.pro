@@ -10,6 +10,8 @@ LIBS += /usr/lib/libopencv*.so \
 QT += websockets \
      network
 
+CFLAGS += -Wnomultichar
+
 SOURCES += \
     myrecognizer.cpp \
     facedetectapp.cpp \
