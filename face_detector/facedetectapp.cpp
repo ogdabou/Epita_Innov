@@ -113,10 +113,10 @@ void FaceDetectApp::refreshFrame()
     }
 
     singleFrame.size;
-    //cv::Mat tmp;
-    //cv::Size size(desktop->width() / 5, desktop->height() / 5);
-    //cv::resize(singleFrame, tmp, size, 0, 0, cv::INTER_CUBIC);
-    //tmp.copyTo(singleFrame);
+    cv::Mat tmpI;
+    cv::Size size(desktop->width() / 3 - 25, desktop->height() / 2 - 50);
+    cv::resize(singleFrame, tmpI, size, 0, 0, cv::INTER_CUBIC);
+    tmpI.copyTo(singleFrame);
     singleFrame.copyTo(currentFrame);
     MyQtGui* temp = resultPrinter.find(WEBCAM_RAW_WINDOW_TITLE)->second;
    /** std::vector<> zone_list;// = new std::vector<cv::Point>();
@@ -158,7 +158,7 @@ int FaceDetectApp::mainLoop(int argc, char* argv[])
 {
     QApplication app(argc, argv);
     desktop = QApplication::desktop();
-    myClient = new Client();
+//    myClient = new Client();
     //myClient->setFixedSize(desktop->width() / 3, desktop->height() / 3);
     mainWindow = new QMainWindow();
     timer = new QTimer(this);
@@ -179,7 +179,7 @@ int FaceDetectApp::mainLoop(int argc, char* argv[])
     layout->addWidget(resultPrinter[WEBCAM_MVT_WINDOW], 1, 0);
     layout->addWidget(resultPrinter[WEBCAM_COLOR_WINDOW], 1, 1);
     layout->addWidget(resultPrinter[WEBCAM_CONTOUR_WINDOW], 1, 2);
-    layout->addWidget(myClient, 0, 2);
+//    layout->addWidget(myClient, 0, 2);
 
     widget->setLayout(layout);
     mainWindow->setCentralWidget(widget);
